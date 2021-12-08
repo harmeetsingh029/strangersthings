@@ -85,6 +85,7 @@ const Form = (props) => {
           {
           !isLoggedin ? <>
         <div id='loginContainer'>
+        <h2>Login: </h2>
         <form onSubmit={login}>
           <label htmlFor='username'>Username:</label>
           <input type='text' name='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
@@ -97,6 +98,7 @@ const Form = (props) => {
         
            
         <div id='registerContainer'>
+        <h2>Register: </h2>
             <form onSubmit={register}>
                 <label htmlFor='usernameRegister'>Desired Username:</label>
                 <input type='text' name='usernameRegister' value={usernameRegister} onChange={(event) => setUsernameRegister(event.target.value)}/>
@@ -105,7 +107,7 @@ const Form = (props) => {
                 <button type='submit'>Register</button>
             </form>
         </div>
-        </> : `Welcome ${username}`
+        </> : <h2>{`Welcome ${username}`}</h2>
         } 
 
         <div id='logout'>
