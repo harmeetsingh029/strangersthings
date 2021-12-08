@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Posts from './components/Posts'
 import Form from './components/Form'
+import Listing from './components/Listing';
 
 const url = 'https://strangers-things.herokuapp.com/api/2111-FTB-ET-WEB-FT/posts'
 

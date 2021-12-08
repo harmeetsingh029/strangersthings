@@ -6,8 +6,9 @@ const Form = () => {
     const [password, setPassword] = useState('')
     const [usernameRegister, setUsernameRegister] = useState('')
     const [passwordRegister, setPasswordRegister] = useState('')
+    const [loginToken, setLoginToken] = useState('')
     let isLoggedin = false
-
+    
     async function register(event) {
         event.preventDefault()
         let response = await fetch(
@@ -50,8 +51,9 @@ const Form = () => {
       )
 
       let user = await response.json()
-      console.log(user)
+      setLoginToken(user.data.token)
       getUser(user.data.token)
+      
       isLoggedin = true
       setUsername("")
       setPassword("")
@@ -69,7 +71,12 @@ const Form = () => {
       
         let user = await response.json()
     }
-  
+
+    function logout(){
+        isLoggedin = false
+        setLoginToken('')  
+    }
+
     return (
       <div id='loginContainer'>
         <div id='loginContainer'>
@@ -81,7 +88,7 @@ const Form = () => {
           <button type='submit'>Submit</button>
         </form>
         </div>
-
+        {console.log(loginToken)}
         {
            !isLoggedin ? <>
         <div id='registerContainer'>
@@ -94,7 +101,11 @@ const Form = () => {
             </form>
         </div>
         </> : null
-        }   
+        } 
+
+        <div id='logout'>
+            <button type='submit' onClick={logout}>Logout</button>
+        </div>
       </div>
     )
   }
