@@ -1,13 +1,14 @@
 import React, {useState} from "react"
 
-const Form = () => {
+const Form = (props) => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [usernameRegister, setUsernameRegister] = useState('')
     const [passwordRegister, setPasswordRegister] = useState('')
-    const [loginToken, setLoginToken] = useState('')
-    let isLoggedin = false
+    const [isLoggedin, setIsLoggedIn] = useState(false)
+
+    const {loginToken, setLoginToken} = props
     
     async function register(event) {
         event.preventDefault()
@@ -54,7 +55,7 @@ const Form = () => {
       setLoginToken(user.data.token)
       getUser(user.data.token)
       
-      isLoggedin = true
+      setIsLoggedIn(true)
       setUsername("")
       setPassword("")
     }
@@ -73,12 +74,16 @@ const Form = () => {
     }
 
     function logout(){
-        isLoggedin = false
+        setIsLoggedIn(false)
         setLoginToken('')  
+        setUsername("")
+        setPassword("")
     }
 
     return (
-      <div id='loginContainer'>
+      <div id='formContainer'>
+          {
+          !isLoggedin ? <>
         <div id='loginContainer'>
         <form onSubmit={login}>
           <label htmlFor='username'>Username:</label>
@@ -89,8 +94,8 @@ const Form = () => {
         </form>
         </div>
         {console.log(loginToken)}
-        {
-           !isLoggedin ? <>
+        
+           
         <div id='registerContainer'>
             <form onSubmit={register}>
                 <label htmlFor='usernameRegister'>Desired Username:</label>
@@ -100,7 +105,7 @@ const Form = () => {
                 <button type='submit'>Register</button>
             </form>
         </div>
-        </> : null
+        </> : `Welcome ${username}`
         } 
 
         <div id='logout'>

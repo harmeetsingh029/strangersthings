@@ -7,7 +7,7 @@
 
 body{
     background-image: linear-gradient(to bottom right, rgb(185, 4, 4), rgb(255, 136, 0), rgb(229, 255, 0));
-    height: 100vh;
+    height: 100%;
 }
 
 .content{
@@ -29,4 +29,10 @@ body{
 
 #loginContainer{
     margin-bottom: 15px;
+}
+
+#listForm{
+    display: flex;
+    flex-direction: column ;
+    width: 50%;
 }
