@@ -22,7 +22,7 @@ const Profile = (props) => {
             alert("Post removed from board")
         });
        } 
-
+       
     return(
 
         <div>
@@ -37,7 +37,7 @@ const Profile = (props) => {
                         <span className="content">{value.location}<br></br></span>
 
                         <span className="title">User: </span>
-                        <span className="content">{value.author.username}<br></br></span>
+                        <span className="content">{value.username}<br></br></span>
 
                         <span className="title">Description: </span>
                         <span className="content">{value.description}<br></br></span>

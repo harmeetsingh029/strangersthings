@@ -26,10 +26,14 @@ const App = () => {
             </div>
 
 
-            <Route path="/profile">  
+            <Route path="/profile"> 
                 <Form loginToken={loginToken} setLoginToken={setLoginToken} userData={userData} setUserData={setUserData} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
-                <Profile id="profilePage" userData={userData} setUserData={setUserData} loginToken={loginToken} setLoginToken={setLoginToken}/>
-                <Listing loginToken={loginToken} setLoginToken={setLoginToken} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
+                { isLoggedin ?
+                <div>
+                    <Profile id="profilePage" userData={userData} setUserData={setUserData} loginToken={loginToken} setLoginToken={setLoginToken}/>
+                    <Listing loginToken={loginToken} setLoginToken={setLoginToken} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
+                </div> : null
+                }
             </Route>
             
             <Route path='/posts'>

@@ -97,7 +97,7 @@ const Form = (props) => {
                 <button type='submit'>Register</button>
             </form>
         </div>
-        </> : <h2>{`Welcome ${username}`}</h2>
+        </> : <h1>{`Your Profile`}</h1>
         } 
 
         <div id='logout'>

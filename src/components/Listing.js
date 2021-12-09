@@ -35,8 +35,7 @@ const Listing = (props) => {
 
     return(
         <div>
-        { 
-        isLoggedIn ?
+            <h2>Make a new post: </h2>
             <form id='listForm'>
                 <label htmlFor='title'>Title your post:</label>
                 <input type='text' name='title' value={title} onChange={(event) => setTitle(event.target.value)}/>
@@ -49,8 +48,7 @@ const Listing = (props) => {
                 <label htmlFor="delivery">Do you deliver?</label>
                 <input name="delivery" checked={delivery} type='checkbox' onChange={(event) => setDelivery(event.target.checked)} />
                 <button type='submit' onClick={makeListing}>List my item</button>
-            </form> : null
-          }
+            </form>
         </div>
    
     )
