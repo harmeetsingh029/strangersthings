@@ -36,3 +36,10 @@ body{
     flex-direction: column ;
     width: 50%;
 }
+
+#profileLink{
+    margin-right: 20px;
+}
+#profilePage{
+    height: 100%;
+}

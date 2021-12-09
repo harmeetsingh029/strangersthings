@@ -1,21 +1,27 @@
 import React, {useState, useEffect} from "react";
-import { getPosts } from "../api";
+import { getUser } from "../api";
 
+const Profile = (props) => {
 
-const Posts = (props) => {
-
-    const {data, setData} = props
-
+    const {userData, setUserData, loginToken, setLoginToken} = props
+    
     useEffect(() => {
-        getPosts().then((info) => {
-            setData(info)
+        if(loginToken){
+        getUser(loginToken).then((info) => {
+            setUserData(info.data)
+            
         })
-    }, []);
+    }
+      },[loginToken])
+      console.log(userData)
 
-    return (
+    return(
+
         <div>
+         <h2>Your posts:</h2>
             {
-            data.map((value, index) => {
+            userData.posts ? 
+            userData.posts.map((value, index) => {
                 return (
                     <div key={index} id="posts">
                         <h3>{value.title}</h3>
@@ -34,11 +40,26 @@ const Posts = (props) => {
                         <span className="title">Delivery: </span>
                         <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span>
                     </div>
-                )
-            })
+                    )
+                }
+                ) : null
+            }
+                
+            {
+                userData.messages ?
+                <>
+                <h2>Your messages:</h2>
+                {userData.messages.map((value, index) => {
+                    return (
+                        <div>
+                            
+                            <p>{value}</p>
+                        </div>
+                    ) 
+                })}</> : <h2>No Messages</h2>
             }
         </div>
     )
 }
 
-export default Posts
+export default Profile

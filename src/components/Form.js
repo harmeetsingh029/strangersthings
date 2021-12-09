@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import { getUser } from "../api";
 
 const Form = (props) => {
 
@@ -6,9 +7,8 @@ const Form = (props) => {
     const [password, setPassword] = useState('')
     const [usernameRegister, setUsernameRegister] = useState('')
     const [passwordRegister, setPasswordRegister] = useState('')
-    const [isLoggedin, setIsLoggedIn] = useState(false)
 
-    const {loginToken, setLoginToken} = props
+    const {loginToken, setLoginToken, isLoggedin, setIsLoggedIn, userData, setUserData} = props
     
     async function register(event) {
         event.preventDefault()
@@ -27,14 +27,14 @@ const Form = (props) => {
               }),
             }
           )
-        let data = await response.json()
+        let info = await response.json()
         setUsernameRegister("")
         setPasswordRegister("")
-        console.log(data)
     }
   
     async function login(event) {
       event.preventDefault()
+      try{
       let response = await fetch(
         'https://strangers-things.herokuapp.com/api/2111-FTB-ET-WEB-FT/users/login',
         {
@@ -52,26 +52,18 @@ const Form = (props) => {
       )
 
       let user = await response.json()
-      setLoginToken(user.data.token)
-      getUser(user.data.token)
-      
       setIsLoggedIn(true)
+      setLoginToken(user.data.token)
+      let newUser = getUser(user.data.token)
+      setUserData(newUser)
+      }catch(err){
+        console.log(err)
+      }
       setUsername("")
       setPassword("")
     }
   
-    async function getUser(token){
-        let response = await fetch('https://strangers-things.herokuapp.com/api/2111-FTB-ET-WEB-FT/users/me',
-        {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-      
-        let user = await response.json()
-    }
+
 
     function logout(){
         setIsLoggedIn(false)
@@ -94,8 +86,6 @@ const Form = (props) => {
           <button type='submit'>Submit</button>
         </form>
         </div>
-        {console.log(loginToken)}
-        
            
         <div id='registerContainer'>
         <h2>Register: </h2>
