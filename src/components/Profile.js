@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { getUser } from "../api";
+import { deletePost, getUser } from "../api";
 
 const Profile = (props) => {
 
@@ -13,7 +13,15 @@ const Profile = (props) => {
         })
     }
       },[loginToken])
-      console.log(userData)
+
+      let deleteButtons = [...document.getElementsByClassName('remove')];
+      for (let i = 0; i < deleteButtons.length; i++) {
+        const button = deleteButtons[i];
+        button.addEventListener('click', async () => {
+            await deletePost(button.value, loginToken)
+            alert("Post removed from board")
+        });
+       } 
 
     return(
 
@@ -38,7 +46,9 @@ const Profile = (props) => {
                         <span className="content">{value.price}<br></br></span>
 
                         <span className="title">Delivery: </span>
-                        <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span>
+                        <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span><br></br>
+
+                        <button className="remove" value={value._id}>DELETE POST</button>
                     </div>
                     )
                 }
