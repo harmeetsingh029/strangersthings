@@ -22,7 +22,7 @@ const Profile = (props) => {
             alert("Post removed from board")
         });
        } 
-       
+
     return(
 
         <div>
@@ -31,6 +31,7 @@ const Profile = (props) => {
             userData.posts ? 
             userData.posts.map((value, index) => {
                 return (
+                    value.active ? <>
                     <div key={index} id="posts">
                         <h3>{value.title}</h3>
                         <span className="title">Location: </span>
@@ -50,10 +51,11 @@ const Profile = (props) => {
 
                         <button className="remove" value={value._id}>DELETE POST</button>
                     </div>
+                    </> : null
                     )
                 }
                 ) : null
-            }
+            } 
                 
             {
                 userData.messages ?
