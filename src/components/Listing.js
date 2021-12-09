@@ -4,12 +4,11 @@ const Listing = (props) => {
     
     const [title, setTitle] = useState("")
     const [location, setLocation] = useState("")
-    const [user, setUser] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("free")
     const [delivery, setDelivery] = useState(false)
 
-    const {loginToken, setLoginToken} = props
+    const {loginToken, setLoginToken, isLoggedIn, setIsLoggedIn} = props
 
     async function makeListing(event) {
         event.preventDefault()
@@ -36,6 +35,8 @@ const Listing = (props) => {
 
     return(
         <div>
+        { 
+        isLoggedIn ? <>
             <form id='listForm'>
                 <label htmlFor='title'>Title your post:</label>
                 <input type='text' name='title' value={title} onChange={(event) => setTitle(event.target.value)}/>
@@ -49,8 +50,10 @@ const Listing = (props) => {
                 <input name="delivery" checked={delivery} type='checkbox' onChange={(event) => setDelivery(event.target.checked)} />
                 <button type='submit' onClick={makeListing}>List my item</button>
             </form>
+            </> : null
+          }
         </div>
-
+   
     )
 }
 
