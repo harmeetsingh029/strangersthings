@@ -11,20 +11,23 @@ const Posts = (props) => {
         getPosts().then((info) => {
             setData(info)
         })
-    }, [isLoggedIn]);
-
-    console.log(isLoggedIn)
+    }, [loginToken]);
 
     let messageButtons = [...document.getElementsByClassName('message')];
     for (let i = 0; i < messageButtons.length; i++) {
       const button = messageButtons[i];
-      button.addEventListener('click', () => {
-          //await sendMessage(button.value, loginToken, message)
-          console.log(button.value)
+      button.addEventListener('click', async () => {
+          await sendMessage(button.value, loginToken, message)
       });
      } 
 
-    let messageText = [...document.getElementsByClassName("")]
+    let messageText = [...document.getElementsByClassName("messageText")]
+    for(let i=0; i < messageText.length; i++){
+        const currentMessage = messageText[i]
+        currentMessage.addEventListener("change", (event) => {
+            setMessage(event.target.value)
+        })
+    }
 
     return (
         <div>
@@ -47,17 +50,10 @@ const Posts = (props) => {
 
                         <span className="title">Delivery: </span>
                         <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span>
-
-                        {/* <form onSubmit= {(event) => {messageUser(value._id, loginToken, message)}}>
-                            <label htmlFor='message'>Send a message:</label>
-                            <input type='text' name='message' value={message} onChange={(event) => setMessage(event.target.value)}/>
-                            <button type='submit'>Send Message</button>
-                        </form> */}
-                        {
-                        isLoggedIn ? <div>
-                            <br></br><input type="text" onChange={(event) => setMessage(event.target.value)}></input>
-                            <br></br><button className="message" value={value._id}>Send a message</button>
-                        </div> : null
+                        { loginToken ? <>
+                        <br></br><input type="text" className="messageText" onChange={(event) => setMessage(event.target.value)}></input>
+                        <br></br><button className="message" value={value._id}>Send a message</button>
+                        </> : null
                         }
                     </div>
                 )
