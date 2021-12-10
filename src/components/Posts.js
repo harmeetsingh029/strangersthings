@@ -31,7 +31,8 @@ const Post = (props) => {
 
             <span className="title">Delivery: </span>
             <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span>
-            { loginToken ?
+
+            { loginToken && !value.isAuthor ?
             <form onSubmit={(event) => {sendUserMessage(event)}}>
                 <br></br><input type="text" className="messageText" value={message} onChange={(event) => setMessage(event.target.value)}></input>
                 <br></br><button type="submit" className="message" value={value._id}>Send a message</button>
@@ -51,6 +52,8 @@ const Posts = (props) => {
         }
         fetchPosts()
     }, [loginToken]);
+
+    console.log(data)
 
     return (
         <div>

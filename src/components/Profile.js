@@ -10,11 +10,10 @@ const Single = (props) => {
         await deletePost(value._id, loginToken)
         alert("Post removed")
     }
-    console.log(value)
+
     return(
         <div>
-        { value.isActive ? <>
-        <h3>{value.title}</h3>
+        { value.active ? <>
         <div key={index} id="posts">
             <h3>{value.title}</h3>
             <span className="title">Location: </span>
@@ -56,7 +55,6 @@ const Profile = (props) => {
         fetchUserData()
     },[loginToken])
 
-    console.log(userData)
 
     return(
         <div>
