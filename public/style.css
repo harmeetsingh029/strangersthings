@@ -56,3 +56,7 @@ body{
 #message{
     margin-top: 20px;
 }
+
+#yourMessages{
+    margin: 10px;
+}

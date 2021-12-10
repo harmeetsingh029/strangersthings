@@ -73,7 +73,6 @@ const Form = (props) => {
         setPassword("")
     }
 
-    console.log(isLoggedin)
     return (
       <div id='formContainer'>
           {

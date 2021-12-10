@@ -23,7 +23,6 @@ const Profile = (props) => {
        } 
 
     return(
-
         <div>
         <h1>Your Profile</h1>
          <h2>Your posts:</h2>
@@ -56,20 +55,22 @@ const Profile = (props) => {
                 }
                 ) : null
             } 
-                
-            {
+
+            <h2>Your messages:</h2> 
+                {
                 userData.messages ?
-                <>
-                <h2>Your messages:</h2>
-                {userData.messages.map((value, index) => {
+                userData.messages.map((value, index) => {
                     return (
-                        <div>
-                            
-                            <p>{value}</p>
+                        <div key={index} id="yourMessages">              
+                            <span className="title">Post: </span>
+                            <span className="content">{value.post.title}<br></br></span>
+
+                            <span className="title">Message: </span>
+                            <span className="content">{value.content}<br></br></span>
                         </div>
                     ) 
-                })}</> : <h2>No Messages</h2>
-            }
+                }): <h2>No Messages</h2>
+                }
         </div>
     )
 }

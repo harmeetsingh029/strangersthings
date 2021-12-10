@@ -57,5 +57,6 @@ export async function sendMessage(postID, token, message){
         })})
     } catch(err){
             console.log(err)
+            alert("Message not sent, please make sure you are logged in")
         }
 }
