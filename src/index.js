@@ -21,19 +21,19 @@ const App = () => {
         <div id='container'>
 
             <div id='navbar'>
+                <Link to="/" id="loginLink">Login</Link>
                 <Link to="/profile" id="profileLink">Profile</Link>
                 <Link to="/posts" id="postsLink">Posts</Link>
-                <Link to="/" id="loginLink">Login</Link>
             </div>
 
             <Route path="/">
                 <Form loginToken={loginToken} setLoginToken={setLoginToken} userData={userData} setUserData={setUserData} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
             </Route>
-            
+
             <Route path="/profile"> 
                 { isLoggedin ?
                 <div>
-                    <Profile id="profilePage" userData={userData} setUserData={setUserData} loginToken={loginToken} setLoginToken={setLoginToken}/>
+                    <Profile id="profilePage" isLoggedin={isLoggedin} userData={userData} setUserData={setUserData} loginToken={loginToken} setLoginToken={setLoginToken}/>
                     <Listing loginToken={loginToken} setLoginToken={setLoginToken} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
                 </div> : null
                 }

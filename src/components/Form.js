@@ -57,6 +57,7 @@ const Form = (props) => {
       let newUser = getUser(user.data.token)
       setUserData(newUser)
       }catch(err){
+        setIsLoggedIn(false)
         console.log(err)
       }
       setUsername("")
@@ -72,6 +73,7 @@ const Form = (props) => {
         setPassword("")
     }
 
+    console.log(isLoggedin)
     return (
       <div id='formContainer'>
           {

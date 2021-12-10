@@ -49,6 +49,10 @@ body{
     height: 100%;
 }
 
+#loginLink{
+    margin-right: 20px;
+}
+
 #message{
     margin-top: 20px;
 }

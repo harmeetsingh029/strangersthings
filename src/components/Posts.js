@@ -11,8 +11,9 @@ const Posts = (props) => {
         getPosts().then((info) => {
             setData(info)
         })
-    }, [loginToken, isLoggedIn]);
+    }, [isLoggedIn]);
 
+    console.log(isLoggedIn)
 
     let messageButtons = [...document.getElementsByClassName('message')];
     for (let i = 0; i < messageButtons.length; i++) {
@@ -22,6 +23,8 @@ const Posts = (props) => {
           console.log(button.value)
       });
      } 
+
+    let messageText = [...document.getElementsByClassName("")]
 
     return (
         <div>
@@ -50,7 +53,12 @@ const Posts = (props) => {
                             <input type='text' name='message' value={message} onChange={(event) => setMessage(event.target.value)}/>
                             <button type='submit'>Send Message</button>
                         </form> */}
-                        <br></br><button className="message" value={value._id}>Send a message</button>
+                        {
+                        isLoggedIn ? <div>
+                            <br></br><input type="text" onChange={(event) => setMessage(event.target.value)}></input>
+                            <br></br><button className="message" value={value._id}>Send a message</button>
+                        </div> : null
+                        }
                     </div>
                 )
             })
