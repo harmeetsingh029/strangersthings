@@ -4,7 +4,7 @@ export async function getPosts() {
     try{
         const response = await fetch('https://strangers-things.herokuapp.com/api/2111-FTB-ET-WEB-FT/posts')
         const posts = await response.json()
-        return posts.data.posts
+        return posts.data
     }catch(err){
         console.log(err)
     }
@@ -22,10 +22,11 @@ export async function getUser(token){
       }
     )
     const user = await response.json()
-    return user
+    return user.data
     }
     catch(err){
         console.log(err)
+        return err
     }
 }
 

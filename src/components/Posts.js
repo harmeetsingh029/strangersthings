@@ -13,6 +13,7 @@ const Post = (props) => {
         setMessage("")
     }
 
+    
     return (
         <div id="posts">
             <h3>{value.title}</h3>
@@ -42,21 +43,21 @@ const Post = (props) => {
 
 const Posts = (props) => {
 
-    
     const {data, setData, loginToken, setLoginToken, isLoggedIn} = props
 
     useEffect(() => {
-        getPosts().then((info) => {
-            setData(info)
-        })
+        async function fetchPosts() {
+            setData(await getPosts())
+        }
+        fetchPosts()
     }, [loginToken]);
 
     return (
         <div>
-            {
-            data.map((value, index) => <Post value={value} index={index} key={index} loginToken={loginToken}/>
-            )
-            }
+            { data.posts && data.posts.length > 0 ?
+            data.posts.map((value, index) => <Post value={value} index={index} key={index} loginToken={loginToken}/>
+            ): null
+            } 
         </div>
     )
 }

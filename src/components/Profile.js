@@ -1,59 +1,69 @@
 import React, {useState, useEffect} from "react";
 import { deletePost, getUser } from "../api";
 
+const Single = (props) => {
+
+    const {value, loginToken, index} = props
+
+    async function deleteThisPost(event){
+        event.preventDefault()
+        await deletePost(value._id, loginToken)
+        alert("Post removed")
+    }
+    console.log(value)
+    return(
+        <div>
+        { value.isActive ? <>
+        <h3>{value.title}</h3>
+        <div key={index} id="posts">
+            <h3>{value.title}</h3>
+            <span className="title">Location: </span>
+            <span className="content">{value.location}<br></br></span>
+
+            <span className="title">User: </span>
+            <span className="content">{value.username}<br></br></span>
+
+            <span className="title">Description: </span>
+            <span className="content">{value.description}<br></br></span>
+
+            <span className="title">Price: </span>
+            <span className="content">{value.price}<br></br></span>
+
+            <span className="title">Delivery: </span>
+            <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span><br></br>
+
+            <form onSubmit={(event) => {deleteThisPost(event)}}>
+                <br></br><button type="submit" className="deleteButton" value={value._id}>DELETE POST</button>
+            </form>
+        </div>
+        </> : null
+        }
+        </div>
+    )
+
+}
+
 const Profile = (props) => {
 
-    const {userData, setUserData, loginToken, setLoginToken} = props
+    const {userData, setUserData, loginToken} = props
     
     useEffect(() => {
-        if(loginToken){
-        getUser(loginToken).then((info) => {
-            setUserData(info.data)
-        })
-    }
-      },[loginToken])
+        async function fetchUserData() {
+            if(loginToken){
+                setUserData(await getUser(loginToken))
+            }
+        }
+        fetchUserData()
+    },[loginToken])
 
-      let deleteButtons = [...document.getElementsByClassName('remove')];
-      for (let i = 0; i < deleteButtons.length; i++) {
-        const button = deleteButtons[i];
-        button.addEventListener('click', async () => {
-            await deletePost(button.value, loginToken)
-            alert("Post removed from board")
-        });
-       } 
+    console.log(userData)
 
     return(
         <div>
         <h1>Your Profile</h1>
          <h2>Your posts:</h2>
-            {
-            userData.posts ? 
-            userData.posts.map((value, index) => {
-                return (
-                    value.active ? <>
-                    <div key={index} id="posts">
-                        <h3>{value.title}</h3>
-                        <span className="title">Location: </span>
-                        <span className="content">{value.location}<br></br></span>
-
-                        <span className="title">User: </span>
-                        <span className="content">{value.username}<br></br></span>
-
-                        <span className="title">Description: </span>
-                        <span className="content">{value.description}<br></br></span>
-
-                        <span className="title">Price: </span>
-                        <span className="content">{value.price}<br></br></span>
-
-                        <span className="title">Delivery: </span>
-                        <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span><br></br>
-
-                        <button className="remove" value={value._id}>DELETE POST</button>
-                    </div>
-                    </> : null
-                    )
-                }
-                ) : null
+            { userData.posts && userData.posts.length > 0 ?
+            userData.posts.map((value, index) => <Single value={value} index={index} key={index} loginToken={loginToken}/>) : null
             } 
 
             <h2>Your messages:</h2> 
