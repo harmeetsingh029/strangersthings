@@ -53,10 +53,27 @@ const Posts = (props) => {
         fetchPosts()
     }, [loginToken]);
 
+    function filter() {
+        let text = document.getElementById("filter")
+        for(let i = 0; i < data.posts.length; i++){
+            if(data.posts[i].title.toLowerCase() === (text.value.toLowerCase())){
+                return(
+                    <div>
+                        <h3>{data.posts[i].title}</h3>
+                    </div>
+                )
+            }
+
+        }
+    }
+
     console.log(data)
 
     return (
         <div>
+            <input type="text" id="filter"></input><br></br>
+            <button onClick={filter}>Filter search</button>
+
             { data.posts && data.posts.length > 0 ?
             data.posts.map((value, index) => <Post value={value} index={index} key={index} loginToken={loginToken}/>
             ): null

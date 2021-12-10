@@ -41,9 +41,9 @@ const App = () => {
             
             <Route path='/posts'>
                 <h1>Strangers Things</h1>
-                <Posts data={data} setData={setData} loginToken={loginToken} setLoginToken={setLoginToken} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
+                <Posts id="postPage" data={data} setData={setData} loginToken={loginToken} setLoginToken={setLoginToken} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
             </Route>
-            
+
         </div>
         </BrowserRouter>
     )
