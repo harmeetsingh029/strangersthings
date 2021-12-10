@@ -1,13 +1,16 @@
 #posts {
-    border: 2px solid purple;
+    border: 4px solid purple;
     margin: 3px;
     padding: 5px;
-    width: 70%;
+    width: 50%;
 }
 
 body{
     background-image: linear-gradient(to bottom right, rgb(185, 4, 4), rgb(255, 136, 0), rgb(229, 255, 0));
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .content{
@@ -34,7 +37,8 @@ body{
 #listForm{
     display: flex;
     flex-direction: column ;
-    width: 50%;
+    width: 20%;
+    margin-left: 20px;
 }
 
 #profileLink{
@@ -59,4 +63,33 @@ body{
 
 #yourMessages{
     margin: 10px;
+}
+
+#yourMessages{
+    border: 4px solid black;
+    width: 50%;
+}
+
+button {
+    display: block;
+    margin: auto 0;
+    width: 100px;
+    box-shadow: black;
+    border-radius: 10%;
+    border: 4px solid rgb(251, 255, 0);
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    transition-duration: 0.5s;
+    background-color: rgb(255, 136, 0);
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: rgba(196, 34, 34, 0.781);
+    box-shadow: 0 5px rgba(0, 0, 0, 0.514);
 }

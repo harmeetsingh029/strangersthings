@@ -43,6 +43,7 @@ const App = () => {
                 <h1>Strangers Things</h1>
                 <Posts data={data} setData={setData} loginToken={loginToken} setLoginToken={setLoginToken} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
             </Route>
+            
         </div>
         </BrowserRouter>
     )

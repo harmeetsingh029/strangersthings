@@ -84,7 +84,7 @@ const Form = (props) => {
           <input type='text' name='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
           <label htmlFor='password'>Password:</label>
           <input type='password' name='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
-          <button type='submit'>Submit</button>
+          <button type='submit'>Login</button>
         </form>
         </div>
            
@@ -101,10 +101,12 @@ const Form = (props) => {
         </> : null
         } 
 
+        { loginToken ?
         <div id='logout'>
             <button type='submit' onClick={logout}>Logout</button>
+        </div> : null
+        } 
         </div>
-      </div>
     )
   }
 
