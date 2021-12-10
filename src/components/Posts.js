@@ -58,16 +58,12 @@ const Posts = (props) => {
         for(let i = 0; i < data.posts.length; i++){
             if(data.posts[i].title.toLowerCase() === (text.value.toLowerCase())){
                 return(
-                    <div>
-                        <h3>{data.posts[i].title}</h3>
-                    </div>
+                    alert("see post number " + (i + 1))
                 )
             }
-
         }
+        alert("no macth")
     }
-
-    console.log(data)
 
     return (
         <div>
