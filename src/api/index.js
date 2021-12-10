@@ -41,3 +41,21 @@ export async function deletePost(postID, token){
         console.log(err)
     }
 }
+
+export async function sendMessage(postID, token, message){
+    try{
+        const response = await fetch(`https://strangers-things.herokuapp.com/api/2111-FTB-ET-WEB-FT/posts/${postID}/messages`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          message: {
+            content: `${message}`
+          }
+        })})
+    } catch(err){
+            console.log(err)
+        }
+}

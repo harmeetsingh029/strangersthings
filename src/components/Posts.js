@@ -1,16 +1,27 @@
 import React, {useState, useEffect} from "react";
-import { getPosts } from "../api";
+import { getPosts, sendMessage } from "../api";
 
 
 const Posts = (props) => {
 
-    const {data, setData} = props
+    const [message, setMessage] = useState("")
+    const {data, setData, loginToken, setLoginToken, isLoggedIn} = props
 
     useEffect(() => {
         getPosts().then((info) => {
             setData(info)
         })
-    }, []);
+    }, [loginToken, isLoggedIn]);
+
+
+    let messageButtons = [...document.getElementsByClassName('message')];
+    for (let i = 0; i < messageButtons.length; i++) {
+      const button = messageButtons[i];
+      button.addEventListener('click', () => {
+          //await sendMessage(button.value, loginToken, message)
+          console.log(button.value)
+      });
+     } 
 
     return (
         <div>
@@ -33,6 +44,13 @@ const Posts = (props) => {
 
                         <span className="title">Delivery: </span>
                         <span className="content">{value.willDeliver ? "I will deliver" : "I will not deliver"}</span>
+
+                        {/* <form onSubmit= {(event) => {messageUser(value._id, loginToken, message)}}>
+                            <label htmlFor='message'>Send a message:</label>
+                            <input type='text' name='message' value={message} onChange={(event) => setMessage(event.target.value)}/>
+                            <button type='submit'>Send Message</button>
+                        </form> */}
+                        <br></br><button className="message" value={value._id}>Send a message</button>
                     </div>
                 )
             })

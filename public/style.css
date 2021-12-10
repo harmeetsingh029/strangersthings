@@ -40,6 +40,15 @@ body{
 #profileLink{
     margin-right: 20px;
 }
+
+#postsLink{
+    margin-right: 20px;
+}
+
 #profilePage{
     height: 100%;
+}
+
+#message{
+    margin-top: 20px;
 }

@@ -31,6 +31,7 @@ const Listing = (props) => {
               console.log(result);
             })
             .catch(console.error);
+            alert("listing created!")
     }
 
     return(

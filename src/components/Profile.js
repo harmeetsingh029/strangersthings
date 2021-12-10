@@ -9,7 +9,6 @@ const Profile = (props) => {
         if(loginToken){
         getUser(loginToken).then((info) => {
             setUserData(info.data)
-            
         })
     }
       },[loginToken])
@@ -26,6 +25,7 @@ const Profile = (props) => {
     return(
 
         <div>
+        <h1>Your Profile</h1>
          <h2>Your posts:</h2>
             {
             userData.posts ? 

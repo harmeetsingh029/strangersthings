@@ -23,11 +23,14 @@ const App = () => {
             <div id='navbar'>
                 <Link to="/profile" id="profileLink">Profile</Link>
                 <Link to="/posts" id="postsLink">Posts</Link>
+                <Link to="/" id="loginLink">Login</Link>
             </div>
 
-
-            <Route path="/profile"> 
+            <Route path="/">
                 <Form loginToken={loginToken} setLoginToken={setLoginToken} userData={userData} setUserData={setUserData} isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn}/>
+            </Route>
+            
+            <Route path="/profile"> 
                 { isLoggedin ?
                 <div>
                     <Profile id="profilePage" userData={userData} setUserData={setUserData} loginToken={loginToken} setLoginToken={setLoginToken}/>
