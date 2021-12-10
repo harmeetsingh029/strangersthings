@@ -21,7 +21,6 @@ const App = () => {
         <div id='container'>
 
             <div id='navbar'>
-                <Link to="/" id="loginLink">Login</Link>
                 <Link to="/profile" id="profileLink">Profile</Link>
                 <Link to="/posts" id="postsLink">Posts</Link>
             </div>
